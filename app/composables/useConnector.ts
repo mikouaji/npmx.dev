@@ -57,6 +57,8 @@ const STORAGE_KEY = 'npmx-connector'
 const DEFAULT_PORT = 31415
 
 export const useConnector = createSharedComposable(function useConnector() {
+  const { settings } = useSettings()
+
   // Persisted connection config
   const config = useState<{ token: string; port: number } | null>('connector-config', () => null)
 
@@ -303,7 +305,11 @@ export const useConnector = createSharedComposable(function useConnector() {
       ApiResponse<{ results: unknown[]; otpRequired?: boolean }>
     >('/execute', {
       method: 'POST',
-      body: otp ? { otp } : undefined,
+      body: {
+        otp,
+        interactive: settings.value.connector.webAuth,
+        openUrls: settings.value.connector.autoOpenURL,
+      },
     })
     if (response?.success) {
       await refreshState()
