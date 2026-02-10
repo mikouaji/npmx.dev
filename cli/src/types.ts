@@ -41,6 +41,8 @@ export interface OperationResult {
   requiresOtp?: boolean
   /** True if the operation failed due to authentication failure (not logged in or token expired) */
   authFailure?: boolean
+  /** URLs detected in the command output (stdout + stderr) */
+  urls?: string[]
 }
 
 export interface PendingOperation {
@@ -54,6 +56,8 @@ export interface PendingOperation {
   result?: OperationResult
   /** ID of operation this depends on (must complete successfully first) */
   dependsOn?: string
+  /** Auth URL detected during interactive execution (set while operation is still running) */
+  authUrl?: string
 }
 
 export interface ConnectorState {
