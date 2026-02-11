@@ -174,7 +174,7 @@ const chartConfig = computed(() => {
           fontSize: isMobile.value ? 24 : 16,
           color: pending.value ? colors.value.border : colors.value.fgSubtle,
           axis: {
-            yLabel: 'Downloads',
+            yLabel: $t('package.trends.items.downloads'),
             yLabelOffsetX: 12,
             fontSize: isMobile.value ? 32 : 24,
           },
