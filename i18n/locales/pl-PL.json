@@ -90,9 +90,9 @@
       "label": "Źródło danych",
       "description": "Wybierz skąd npmx pobiera dane wyszukiwania. Strony pakietów zawsze używają danych bezpośrednio z npm.",
       "npm": "Rejestr npm",
-      "npm_description": "Wyniki wyszukiwania oraz strony organizacji i użytkowników pochodzą z oficjalnego rejestru npm. Oficjalne dany, może działać wolniej.",
+      "npm_description": "Wyniki wyszukiwania oraz strony organizacji i użytkowników pochodzą z oficjalnego rejestru npm. Oficjalne dane, może działać wolniej.",
       "algolia": "Algolia",
-      "algolia_description": "Do wyszukiwania oraz stron organizacji i użytkowników używania jest Algolia."
+      "algolia_description": "Do wyszukiwania oraz stron organizacji i użytkowników używana jest Algolia."
     },
     "relative_dates": "Daty względne",
     "include_types": "Dodaj {'@'}types do instalacji",
@@ -252,7 +252,7 @@
       "source_commit": "Commit źródłowy",
       "build_file": "Plik kompilacji",
       "public_ledger": "Publiczny rejestr",
-      "transparency_log_entry": "Wpis w rejestrze transparętności",
+      "transparency_log_entry": "Wpis w rejestrze transparentności",
       "view_more_details": "Więcej szczegółów",
       "error_loading": "Nie udało się załadować szczegółów dotyczących pochodzenia"
     },
@@ -844,7 +844,7 @@
       "connect_bluesky": "Połącz z Bluesky",
       "what_is_atmosphere": "Czym jest konto Atmosphere?",
       "atmosphere_explanation": "{npmx} używa {atproto} do zasilania wielu funkcji społecznościowych, umożliwiając użytkownikom posiadanie swoich danych i korzystanie z jednego konta we wszystkich kompatybilnych aplikacjach. Gdy utworzysz konto, możesz używać innych aplikacji, takich jak {bluesky} i {tangled}, z tym samym kontem.",
-      "default_input_error": "Wprowadź poprawny identyfikator, DID, lib pełny adres PDS'a'"
+      "default_input_error": "Wprowadź poprawny identyfikator, DID lub pełny adres do PDS"
     }
   },
   "header": {
