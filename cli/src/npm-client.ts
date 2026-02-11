@@ -188,6 +188,7 @@ async function execNpmInteractive(
     let otpPromptSeen = false
     let authUrlSeen = false
     let authUrlTimeout: ReturnType<typeof setTimeout> | null = null
+    let authUrlTimedOut = false
 
     const env: Record<string, string> = {
       ...(process.env as Record<string, string>),
@@ -233,6 +234,7 @@ async function execNpmInteractive(
 
           authUrlTimeout = setTimeout(() => {
             if (resolved) return
+            authUrlTimedOut = true
             logDebug('Auth URL timeout (90s) — killing process')
             logError('Authentication timed out after 90 seconds')
             child.kill()
@@ -266,7 +268,8 @@ async function execNpmInteractive(
       const cleanOutput = stripAnsi(output)
       logDebug('Interactive command exited:', { exitCode, output: cleanOutput })
 
-      const requiresOtp = (otpPromptSeen && !options.otp) || detectOtpRequired(cleanOutput)
+      const requiresOtp =
+        authUrlTimedOut || (otpPromptSeen && !options.otp) || detectOtpRequired(cleanOutput)
       const authFailure = detectAuthFailure(cleanOutput)
       const urls = extractUrls(cleanOutput)
 
@@ -283,6 +286,9 @@ async function execNpmInteractive(
         }
       }
 
+      // If auth URL timed out, force a non-zero exit code so it's marked as failed
+      const finalExitCode = authUrlTimedOut ? 1 : exitCode
+
       resolve({
         stdout: cleanOutput.trim(),
         stderr: requiresOtp
@@ -290,7 +296,7 @@ async function execNpmInteractive(
           : authFailure
             ? 'Authentication failed. Please run "npm login" and restart the connector.'
             : filterNpmWarnings(cleanOutput),
-        exitCode,
+        exitCode: finalExitCode,
         requiresOtp,
         authFailure,
         urls: urls.length > 0 ? urls : undefined,
