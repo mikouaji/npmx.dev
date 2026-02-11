@@ -99,6 +99,10 @@ function resetMockState() {
     error: null,
     lastExecutionTime: null,
   }
+  mockSettings.value.connector = {
+    webAuth: false,
+    autoOpenURL: false,
+  }
 }
 
 function simulateConnect() {
@@ -110,6 +114,27 @@ function simulateConnect() {
 // Mock the composables at module level (vi.mock is hoisted)
 vi.mock('~/composables/useConnector', () => ({
   useConnector: createMockUseConnector,
+}))
+
+const mockSettings = ref({
+  relativeDates: false,
+  includeTypesInInstall: true,
+  accentColorId: null,
+  hidePlatformPackages: true,
+  selectedLocale: null,
+  preferredBackgroundTheme: null,
+  searchProvider: 'npm',
+  connector: {
+    webAuth: false,
+    autoOpenURL: false,
+  },
+  sidebar: {
+    collapsed: [],
+  },
+})
+
+vi.mock('~/composables/useSettings', () => ({
+  useSettings: () => ({ settings: mockSettings }),
 }))
 
 vi.mock('~/composables/useSelectedPackageManager', () => ({

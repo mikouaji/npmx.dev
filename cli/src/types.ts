@@ -98,6 +98,7 @@ export interface ExecuteResponseData {
   results: Array<{ id: string; result: OperationResult }>
   otpRequired?: boolean
   authFailure?: boolean
+  urls?: string[]
 }
 
 /** POST /approve-all response data */
@@ -133,7 +134,10 @@ export interface ConnectorEndpoints {
   'POST /approve': { body: never; data: PendingOperation }
   'POST /approve-all': { body: never; data: ApproveAllResponseData }
   'POST /retry': { body: never; data: PendingOperation }
-  'POST /execute': { body: { otp?: string }; data: ExecuteResponseData }
+  'POST /execute': {
+    body: { otp?: string; interactive?: boolean; openUrls?: boolean }
+    data: ExecuteResponseData
+  }
   'GET /org/:org/users': { body: never; data: Record<string, OrgRole> }
   'GET /org/:org/teams': { body: never; data: string[] }
   'GET /team/:scopeTeam/users': { body: never; data: string[] }
