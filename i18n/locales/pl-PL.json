@@ -222,9 +222,6 @@
       "compose_text": "Hej {'@'}{handle}! Czy znasz już npmx.dev? To szybka, nowoczesna przeglądarka rejestru npm z otwartym kodem źródłowym.\nhttps://npmx.dev"
     }
   },
-  "profile": {
-    "invite": {}
-  },
   "package": {
     "not_found": "Nie znaleziono pakietu",
     "not_found_message": "Nie udało się znaleźć pakietu.",
@@ -392,6 +389,7 @@
       "grouping_versions_only_recent": "Tylko ostatnie",
       "grouping_usage_title": "Adopcja",
       "grouping_usage_all": "Wszystkie",
+      "grouping_usage_most_used": "Najczęściej używane",
       "recent_versions_only_tooltip": "Pokaż tylko wersje opublikowane w ciągu ostatniego roku.",
       "show_low_usage_tooltip": "Uwzględnij grupy wersji z mniej niż 1% wszystkich pobrań.",
       "y_axis_label": "Pobrania",
